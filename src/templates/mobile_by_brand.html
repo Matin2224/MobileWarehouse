@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Phones by Brand</title>
+</head>
+<body>
+    <h1>Find Mobile Phones by Brand</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Search</button>
+    </form>
+
+    {% if mobiles %}
+        <h2>Mobile Phones by {{ form.cleaned_data.brand_name }}</h2>
+        <ul>
+            {% for mobile in mobiles %}
+                <li>{{ mobile.model }} - {{ mobile.color }} - {{ mobile.price }}</li>
+            {% endfor %}
+        </ul>
+    {% elif error %}
+        <p>{{ error }}</p>
+    {% endif %}
+</body>
+</html>

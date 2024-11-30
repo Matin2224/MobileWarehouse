@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile and Brand</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        .text-danger {
+            color: red;
+            font-size: 0.875em;
+            margin-top: 0.25rem;
+        }
+    </style>
+</head>
+<body>
+<div class="container mt-5">
+    {% if messages %}
+        <div class="container mt-3">
+            {% for message in messages %}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <h1>Mobile Form</h1>
+    <form id="mobile-form" method="POST">
+        {% csrf_token %}
+
+        <!-- Brand Field and Add New Brand Button -->
+        <div class="row mb-3 align-items-center">
+            <div class="col-md-8">
+                <label for="{{ mobile_form.brand.id_for_label }}"
+                       class="form-label">{{ mobile_form.brand.label }}</label>
+                {{ mobile_form.brand }}
+                {% if mobile_form.brand.errors %}
+                    <div class="text-danger">
+                        {% for error in mobile_form.brand.errors %}
+                            <small>{{ error }}</small>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                {% if mobile_form.brand.help_text %}
+                    <small class="form-text text-muted">{{ mobile_form.brand.help_text }}</small>
+                {% endif %}
+            </div>
+            <div class="col-md-4">
+                <button type="button" class="btn btn-secondary mt-4" data-bs-toggle="modal"
+                        data-bs-target="#addBrandModal">
+                    Add New Brand
+                </button>
+            </div>
+        </div>
+
+        <!-- Other Fields in Two Rows -->
+        <div class="row">
+            <!-- First Row -->
+            <div class="col-md-6 mb-3">
+                <label for="{{ mobile_form.model.id_for_label }}"
+                       class="form-label">{{ mobile_form.model.label }}</label>
+                {{ mobile_form.model }}
+                {% if mobile_form.model.errors %}
+                    <div class="text-danger">
+                        {% for error in mobile_form.model.errors %}
+                            <small>{{ error }}</small>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                {% if mobile_form.model.help_text %}
+                    <small class="form-text text-muted">{{ mobile_form.model.help_text }}</small>
+                {% endif %}
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="{{ mobile_form.price.id_for_label }}"
+                       class="form-label">{{ mobile_form.price.label }}</label>
+                {{ mobile_form.price }}
+                {% if mobile_form.price.errors %}
+                    <div class="text-danger">
+                        {% for error in mobile_form.price.errors %}
+                            <small>{{ error }}</small>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                {% if mobile_form.price.help_text %}
+                    <small class="form-text text-muted">{{ mobile_form.price.help_text }}</small>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <!-- Second Row -->
+            <div class="col-md-6 mb-3">
+                <label for="{{ mobile_form.color.id_for_label }}"
+                       class="form-label">{{ mobile_form.color.label }}</label>
+                {{ mobile_form.color }}
+                {% if mobile_form.color.errors %}
+                    <div class="text-danger">
+                        {% for error in mobile_form.color.errors %}
+                            <small>{{ error }}</small>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                {% if mobile_form.color.help_text %}
+                    <small class="form-text text-muted">{{ mobile_form.color.help_text }}</small>
+                {% endif %}
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="{{ mobile_form.screen_size.id_for_label }}"
+                       class="form-label">{{ mobile_form.screen_size.label }}</label>
+                {{ mobile_form.screen_size }}
+                {% if mobile_form.screen_size.errors %}
+                    <div class="text-danger">
+                        {% for error in mobile_form.screen_size.errors %}
+                            <small>{{ error }}</small>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                {% if mobile_form.screen_size.help_text %}
+                    <small class="form-text text-muted">{{ mobile_form.screen_size.help_text }}</small>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="{{ mobile_form.availability_status.id_for_label }}"
+                       class="form-label">{{ mobile_form.availability_status.label }}</label>
+                {{ mobile_form.availability_status }}
+                {% if mobile_form.availability_status.errors %}
+                    <div class="text-danger">
+                        {% for error in mobile_form.availability_status.errors %}
+                            <small>{{ error }}</small>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                {% if mobile_form.availability_status.help_text %}
+                    <small class="form-text text-muted">{{ mobile_form.availability_status.help_text }}</small>
+                {% endif %}
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="{{ mobile_form.assembling_country.id_for_label }}"
+                       class="form-label">{{ mobile_form.assembling_country.label }}</label>
+                {{ mobile_form.assembling_country }}
+                {% if mobile_form.assembling_country.errors %}
+                    <div class="text-danger">
+                        {% for error in mobile_form.assembling_country.errors %}
+                            <small>{{ error }}</small>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                {% if mobile_form.assembling_country.help_text %}
+                    <small class="form-text text-muted">{{ mobile_form.assembling_country.help_text }}</small>
+                {% endif %}
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save Mobile</button>
+    </form>
+</div>
+
+<!-- Brand Modal -->
+<div class="modal fade" id="addBrandModal" tabindex="-1" aria-labelledby="addBrandModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addBrandModalLabel">Add New Brand</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="brand-form" method="POST">
+                    {% csrf_token %}
+                    {% for field in brand_form %}
+                        <div class="mb-3">
+                            {{ field.label_tag }}
+                            {{ field }}
+                            {% if field.errors %}
+                                <div class="text-danger">
+                                    {% for error in field.errors %}
+                                        <small>{{ error }}</small>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                            {% if field.help_text %}
+                                <small class="form-text text-muted">{{ field.help_text }}</small>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                    <button type="button" class="btn btn-primary" id="save-brand-btn">Save Brand</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Handle brand submission via AJAX
+    // Handle brand submission via AJAX
+    $('#save-brand-btn').on('click', function () {
+        const brandForm = $('#brand-form').serialize();
+        $.ajax({
+            url: "{% url 'phone:add_brand' %}",
+            type: "POST",
+            data: brandForm,
+            success: function (response) {
+                if (response.success) {
+                    // Add the new brand to the dropdown
+                    const newOption = $('<option>', {
+                        value: response.id,
+                        text: response.name,
+                        selected: true // Select the new brand
+                    });
+                    $('#id_brand').append(newOption);
+
+                    // Automatically select the new brand in the dropdown
+                    $('#id_brand').val(response.id);
+
+                    // Show success message and hide the modal
+                    alert('Brand successfully added!');
+                    $('#addBrandModal').modal('hide');
+                } else {
+                    // Clear previous errors
+                    $('.text-danger').remove();
+
+                    // Iterate over the form errors and append them below the corresponding fields
+                    $.each(response.errors, function (field, errorList) {
+                        const fieldElement = $('#id_' + field); // Get the form field by id
+                        $.each(errorList, function (index, error) {
+                            // Create and append the error message under the field
+                            const errorMessage = $('<div class="text-danger"><small>' + error.message + '</small></div>');
+                            fieldElement.closest('.mb-3').append(errorMessage);
+                        });
+                    });
+
+                    // Show alert with a general message
+                    alert('Please fix the errors in the form.');
+                }
+            },
+            error: function () {
+                alert('An error occurred while adding the brand.');
+            }
+        });
+    });
+
+</script>
+
+</body>
+</html>
+
+

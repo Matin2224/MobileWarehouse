@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brand List</title>
+</head>
+<body>
+    <h1>Search Brands by Nationality</h1>
+
+    <!-- Search form -->
+    <form method="get">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Search</button>
+    </form>
+
+    <!-- Display brand names -->
+    <h2>Brands:</h2>
+    <ul>
+        {% for brand in brands %}
+            <li>{{ brand.name }}</li>
+        {% empty %}
+            <li>No brands found.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

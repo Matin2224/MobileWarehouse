@@ -1,0 +1,7 @@
+{% for field, error_list in form.errors.items %}
+    <div class="text-danger">
+        {% for error in error_list %}
+            <small>{{ error }}</small><br>
+        {% endfor %}
+    </div>
+{% endfor %}

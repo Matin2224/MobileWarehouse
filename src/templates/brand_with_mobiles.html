@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brands and Mobiles</title>
+</head>
+<body>
+
+<h1>Brands and Their Mobiles</h1>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Brand</th>
+            <th>Mobile Model</th>
+            <th>Price</th>
+            <th>Color</th>
+            <th>Screen Size</th>
+            <th>Availability</th>
+            <th>Assembling Country</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for brand in brands %}
+            <!-- Loop through each brand -->
+            <tr>
+                <td rowspan="{{ brand.mobiles.count|add:1 }}">{{ brand.name }}</td>
+            </tr>
+            {% for mobile in brand.mobiles.all %}
+                <tr>
+                    <td>{{ mobile.model }}</td>
+                    <td>{{ mobile.price }}</td>
+                    <td>{{ mobile.color }}</td>
+                    <td>{{ mobile.screen_size }}</td>
+                    <td>{{ mobile.get_availability_status_display }}</td>
+                    <td>{{ mobile.assembling_country }}</td>
+                </tr>
+            {% endfor %}
+        {% endfor %}
+    </tbody>
+</table>
+
+</body>
+</html>

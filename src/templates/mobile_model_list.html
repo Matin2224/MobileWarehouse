@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Models</title>
+</head>
+<body>
+
+<h1>Mobile Models</h1>
+
+<!-- Form to input the brand name -->
+<form method="get" action="{% url 'phone:mobile-list' %}">
+    <label for="company_name">Enter Brand Name:</label>
+    <input type="text" id="company_name" name="company_name" value="{{ request.GET.company_name }}">
+    <button type="submit">Search</button>
+</form>
+
+{% if mobiles %}
+    <h2>Results</h2>
+
+    <!-- Table of mobile models with brands -->
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Brand</th>
+                <th>Model</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for mobile in mobiles %}
+                <tr>
+                    <td>{{ mobile.brand.name }}</td>
+                    <td>{{ mobile.model }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>No mobiles found for the given brand or no mobiles available.</p>
+{% endif %}
+
+</body>
+</html>

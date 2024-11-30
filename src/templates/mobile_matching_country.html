@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Devices with Matching Nationality</title>
+</head>
+<body>
+
+  <h1>Mobile Devices with Matching Nationality and Assembling Country</h1>
+
+  {% if mobiles %}
+    <ul>
+      {% for mobile in mobiles %}
+        <li>
+          <strong>Model:</strong> {{ mobile.model }} <br>
+          <strong>Brand:</strong> {{ mobile.brand.name }} <br>
+          <strong>Price:</strong> ${{ mobile.price }} <br>
+          <strong>Color:</strong> {{ mobile.color }} <br>
+          <strong>Screen Size:</strong> {{ mobile.screen_size }} inches <br>
+          <strong>Assembling Country:</strong> {{ mobile.assembling_country }} <br>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No mobile devices found with matching nationality and assembling country.</p>
+  {% endif %}
+
+</body>
+</html>
